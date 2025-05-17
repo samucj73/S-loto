@@ -19,7 +19,7 @@ st.markdown("<p style='text-align: center;'>Gere cartões com base em estatísti
 
 resultados = [r[1] for r in capturar_ultimos_resultados(10)]
 
-aba = st.tabs(["🎯 Geração de Cartões", "📊 Estatísticas", "📤 Exportação"])
+aba = st.tabs(["🎯 Geração de Cartões", "📊 Estatísticas", "🗓 Últimos Resultados", "📤 Exportação"])
 
 with aba[0]:
     st.header("🎯 Geração de Cartões Inteligentes")
@@ -78,6 +78,13 @@ with aba[1]:
             st.write(f"Concurso {-i}: {p} primos")
 
 with aba[2]:
+    st.header("🗓 Últimos 10 Concursos da LotoFácil")
+    ultimos = capturar_ultimos_resultados(10)
+    for concurso, dezenas in ultimos:
+        dezenas_formatadas = ' - '.join(f"{d:02}" for d in sorted(dezenas))
+        st.markdown(f"**Concurso {concurso}:** {dezenas_formatadas}")
+
+with aba[3]:
     st.header("📤 Exportar Cartões")
     if st.session_state.get('cartoes'):
         col1, col2 = st.columns(2)
