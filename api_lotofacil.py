@@ -1,6 +1,6 @@
 import requests
 
-def capturar_ultimos_resultados(qtd=10):
+def capturar_ultimos_resultados :
     url_base = "https://loteriascaixa-api.herokuapp.com/api/lotofacil/"
     concursos = []
 
