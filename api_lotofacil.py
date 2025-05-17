@@ -11,20 +11,32 @@ def capturar_ultimos_resultados(qtd=10):
             print("Erro ao buscar o último concurso.")
             return []
 
-        ultimo = resp.json()
+        dados = resp.json()
+        if isinstance(dados, list):
+            ultimo = dados[0]
+        else:
+            ultimo = dados
+
         numero_atual = int(ultimo.get("concurso"))
         dezenas = sorted([int(d) for d in ultimo.get("dezenas")])
-        concursos.append((numero_atual, dezenas))
+        data_concurso = ultimo.get("data")
+        concursos.append((numero_atual, data_concurso, dezenas))
 
         # Buscar concursos anteriores
         for i in range(1, qtd):
             concurso_numero = numero_atual - i
             resp = requests.get(f"{url_base}{concurso_numero}")
             if resp.status_code == 200:
-                data = resp.json()
+                dados = resp.json()
+                if isinstance(dados, list):
+                    data = dados[0]
+                else:
+                    data = dados
+
                 numero = int(data.get("concurso"))
                 dezenas = sorted([int(d) for d in data.get("dezenas")])
-                concursos.append((numero, dezenas))
+                data_concurso = data.get("data")
+                concursos.append((numero, data_concurso, dezenas))
             else:
                 print(f"Concurso {concurso_numero} não encontrado ou erro na API.")
                 break
