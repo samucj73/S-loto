@@ -1,6 +1,6 @@
 import requests
 
-def capturar_ultimos_resultados
+def capturar_ultimos_resultados(qtd=10):
     url_base = "https://loteriascaixa-api.herokuapp.com/api/lotofacil/"
     concursos = []
 
@@ -17,10 +17,12 @@ def capturar_ultimos_resultados
 
         # Agora busca os anteriores
         for i in range(1, qtd):
-            resp = requests.get(url_base + str(i))
+            resp = requests.get(url_base + str(numero_atual - i))
             if resp.status_code == 200:
                 data = resp.json()
-                concursos.append((data.get("concurso"), [int(d) for d in data.get("dezenas")]))
+                numero = int(data.get("concurso"))
+                dezenas = [int(d) for d in data.get("dezenas")]
+                concursos.append((numero, dezenas))
             else:
                 break
     except Exception as e:
