@@ -6,7 +6,7 @@ def capturar_ultimos_resultados(qtd=10):
 
     try:
         for i in range(qtd):
-            resp = requests.get(url + str(-i))
+            resp = requests.get(url + str(-i))  # concursos mais recentes
             if resp.status_code == 200:
                 data = resp.json()
                 numero = data.get("concurso")
