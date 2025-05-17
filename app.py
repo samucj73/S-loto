@@ -78,9 +78,9 @@ with aba[1]:
             st.write(f"Concurso {-i}: {p} primos")
 
 with aba[2]:
-st.subheader("🗓 Últimos 10 Resultados da LotoFácil")
+    st.subheader("🗓 Últimos 10 Resultados da LotoFácil")
     for concurso, dezenas in capturar_ultimos_resultados():
-    st.markdown(f"**Concurso {concurso}:** {' - '.join(f'{n:02}' for n in dezenas)}")
+        st.markdown(f"**Concurso {concurso}:** {' - '.join(f'{n:02}' for n in dezenas)}")
 
 with aba[3]:
     st.header("📤 Exportar Cartões")
