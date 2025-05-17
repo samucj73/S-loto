@@ -17,7 +17,7 @@ def capturar_ultimos_resultados(qtd=10):
 
         # Agora busca os anteriores
         for i in range(1, qtd):
-            resp = requests.get(url_base + str(numero_atual - i))
+            resp = requests.get(url_base + str(i))
             if resp.status_code == 200:
                 data = resp.json()
                 concursos.append((data.get("concurso"), [int(d) for d in data.get("dezenas")]))
