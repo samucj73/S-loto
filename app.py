@@ -79,7 +79,7 @@ with aba[1]:
 
 with aba[2]:
     st.subheader("🗓 Últimos 10 Resultados da LotoFácil")
-    for concurso, dezenas in capturar_ultimos_resultados():
+    for concurso, dezenas in capturar_ultimos_resultados(10):
         st.markdown(f"**Concurso {concurso}:** {' - '.join(f'{n:02}' for n in dezenas)}")
 
 with aba[3]:
